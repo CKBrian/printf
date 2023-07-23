@@ -13,6 +13,13 @@ int _printf(const char *format, ...);
 
 typedef void (*specifier_handler)(va_list);
 
+/**
+ * struct specifier_map - Mapping specifiers to their functions
+ * @specifier: the map itself
+ * @handler: function pointer 
+ *
+ */
+
 struct specifier_map
 {
 	char specifier;
@@ -23,8 +30,7 @@ void handler_char(va_list arg);
 void handler_string(va_list arg);
 void handler_integer(va_list arg);
 
-struct specifier_map specifiers[] = 
-{
+struct specifier_map specifiers[] = {
 	{'c', handler_char},
 	{'s', handler_string},
 	{'i', handler_integer},
