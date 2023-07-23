@@ -1,10 +1,10 @@
 #include "main.h"
 /**
- * handle_integer - Prints integer to stdout
+ * handler_integer - Prints integer to stdout
  * @arg: integer argument
  * Return: Nothing
  */
-void handle_integer(va_list arg)
+void handler_integer(va_list arg)
 {
 	int num = va_arg(arg, int);
 	char *str = to_strn(num);

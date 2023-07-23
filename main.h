@@ -30,11 +30,5 @@ void handler_char(va_list arg);
 void handler_string(va_list arg);
 void handler_integer(va_list arg);
 
-struct specifier_map specifiers[] = {
-	{'c', handler_char},
-	{'s', handler_string},
-	{'i', handler_integer},
-	{'d', handler_integer},
-};
 
 #endif /* MAIN_H */

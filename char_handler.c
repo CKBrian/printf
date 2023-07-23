@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * handle_char - Entry point
+ * handler_char - Entry point
  *
  * Description: Handling function for %c specifier
  * @arg: argument
@@ -9,7 +9,7 @@
  * Return: Void
  */
 
-void handle_char(va_list arg)
+void handler_char(va_list arg)
 {
 	char c = va_arg(arg, int);
 
