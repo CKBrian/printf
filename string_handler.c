@@ -12,13 +12,15 @@
 void handler_string(va_list arg)
 {
 	char *str = va_arg(arg, char*);
-	if(str == NULL)
+	int strlen;
+
+	if (str == NULL)
 	{
 		write(1, "(null)", 6);
 	}
 	else
 	{
-		int strlen = _strlen(str);
+		strlen = _strlen(str);
 		write(1, str, strlen);
 	}
 }
