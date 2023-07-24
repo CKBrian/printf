@@ -6,7 +6,7 @@
  */
 int handler_unInteger(va_list arg)
 {
-	long int num = va_arg(arg, long int);
+	unsigned int num = va_arg(arg, unsigned int);
 	char *str = unInt_to_strn(num);
 	int strlen = _strlen(str);
 

@@ -4,9 +4,10 @@
  * @n: Unsigned integer to be converted to binary
  * Return: Pointer to a string otherwise NULL
  */
-char *to_binary(long int n)
+char *to_binary(unsigned int n)
 {
-	long int i, div = n;
+	int i;
+	unsigned int div = n;
 	char *str;
 
 	for (i = 0; div > 0; i++)

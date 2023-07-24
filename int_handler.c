@@ -6,7 +6,7 @@
  */
 int handler_integer(va_list arg)
 {
-	long int num = va_arg(arg, long int);
+	int num = va_arg(arg, int);
 	char *str = to_strn(num);
 	int strlen = _strlen(str);
 

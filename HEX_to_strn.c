@@ -4,9 +4,10 @@
  * @n: Unsigned integer to be converted
  * Return: Pointer to a string otherwise NULL
  */
-char *to_HEX(long int n)
+char *to_HEX(unsigned int n)
 {
-	long int i, j, rem, div = n;
+	unsigned int rem, div = n;
+	int i, j;
 	char *str;
 	hex_d arr[] = {
 		{10, 'A'},
@@ -45,5 +46,4 @@ char *to_HEX(long int n)
 			*(str + i) = rem + '0';
 			n /= 16; }
 	}
-	return (str);
-}
+	return (str); }

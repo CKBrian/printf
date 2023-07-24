@@ -5,9 +5,10 @@
  * Return: Pointer to a string otherwise NULL
  */
 
-char *unInt_to_strn(long int n)
+char *unInt_to_strn(unsigned int n)
 {
-	long int i, div = n;
+	int i;
+	unsigned int div = n;
 	char *str;
 
 	for (i = 0; div > 0; i++)

@@ -6,12 +6,12 @@
 #include <stdarg.h>
 
 int (*get_funct(char s))(va_list arg);
-char *to_strn(long int n);
-char *unInt_to_strn(long int n);
-char *to_binary(long int n);
+char *to_strn(int n);
+char *unInt_to_strn(unsigned int n);
+char *to_binary(unsigned int n);
 char *to_octal(unsigned int n);
-char *to_HEX(long int n);
-char *to_hex(long int n);
+char *to_HEX(unsigned int n);
+char *to_hex(unsigned int n);
 int _strlen(char *s);
 int _printf(const char *format, ...);
 
@@ -33,7 +33,7 @@ typedef struct specifier_map
  */
 typedef struct hexa
 {
-	int num;
+	unsigned int num;
 	char h;
 } hex_d;
 
