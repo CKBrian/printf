@@ -4,10 +4,11 @@
  * @n: Unsigned integer to be converted to octal
  * Return: Pointer to a string otherwise NULL
  */
-char *to_octal(long int n)
+char *to_octal(unsigned int n)
 {
-	long int i, div = n;
+	unsigned int div = n;
 	char *str;
+	int i;
 
 	for (i = 0; div > 0; i++)
 	{

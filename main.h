@@ -9,7 +9,7 @@ int (*get_funct(char s))(va_list arg);
 char *to_strn(long int n);
 char *unInt_to_strn(long int n);
 char *to_binary(long int n);
-char *to_octal(long int n);
+char *to_octal(unsigned int n);
 char *to_HEX(long int n);
 char *to_hex(long int n);
 int _strlen(char *s);
