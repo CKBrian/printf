@@ -3,21 +3,12 @@
  * _printf - produces output according to a format
  * @format: Pointer to format string containing format specifiers
  * Return: No of characters written to stdout else -1
- * 
  */
-
-struct specifier_map specifiers[] = {
-	{'c', handler_char},
-	{'s', handler_string},
-	{'i', handler_integer},
-	{'d', handler_integer},
-};
-
 int _printf(const char *format, ...)
 {
-	int j;
-	long unsigned int k;
+	int j, k, bytes = 0;
 	va_list arg;
+	char p_holder[] = "scidbXxou";
 
 	va_start(arg, format);
 
@@ -25,23 +16,29 @@ int _printf(const char *format, ...)
 	{
 	if (format[j] == '%')
 	{
-	for (k = 0; k < sizeof(specifiers) / sizeof(specifiers[0]); k++)
-	{
-		if (format[j + 1] == specifiers[k].specifier)
+		if (format[j + 1] == '%')
 		{
-			specifiers[k].handler(arg);
+			bytes += write(1, &format[j], 1);
 			j++;
-			break;
 		}
-	}
+		else
+		{
+		for (k = 0; k < 9; k++)
+		{
+			if (format[j + 1] == p_holder[k])
+			{
+				bytes += (*get_funct(p_holder[k]))(arg);
+				j++;
+				break;
+			}
+			else if (k == 8)
+				bytes += write(1, &format[j], 1);
+		} }
 	}
 	else
-	{
-		write(1, &format[j], 1);
+		bytes += write(1, &format[j], 1);
 	}
-	}
-
 	va_end(arg);
-	return (0);
+	return (bytes);
 }
 

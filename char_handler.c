@@ -6,12 +6,13 @@
  * Description: Handling function for %c specifier
  * @arg: argument
  *
- * Return: Void
+ * Return: 1
  */
 
-void handler_char(va_list arg)
+int handler_char(va_list arg)
 {
 	char c = va_arg(arg, int);
 
 	write(1, &c, 1);
+	return (1);
 }

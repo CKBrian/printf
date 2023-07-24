@@ -1,13 +1,13 @@
 #include "main.h"
 /**
- * handler_integer - Prints integer to stdout
+ * handler_octal - Prints integer to stdout
  * @arg: integer argument
  * Return: String length
  */
-int handler_integer(va_list arg)
+int handler_octal(va_list arg)
 {
 	long int num = va_arg(arg, long int);
-	char *str = to_strn(num);
+	char *str = to_octal(num);
 	int strlen = _strlen(str);
 
 	write(1, str, strlen);
