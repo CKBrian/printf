@@ -10,7 +10,10 @@ int handler_hex(va_list arg)
 	char *str = to_hex(num);
 	int strlen = _strlen(str);
 
-	write(1, str, strlen);
+	if (num == 0)
+		write(1, "0", 1);
+	else
+		write(1, str, strlen);
 	free(str);
 	return (strlen);
 }

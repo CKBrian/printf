@@ -10,7 +10,12 @@ int handler_pointer(va_list arg)
 	char *str = to_pointer(num);
 	int strlen = _strlen(str);
 
-	write(1, str, strlen);
+	if (num == 0)
+	{
+		write(1, "(nil)", 5);
+	}
+	else
+		write(1, str, strlen);
 	free(str);
 	return (strlen);
 }
