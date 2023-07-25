@@ -10,7 +10,8 @@
 int handler_Sstring(va_list arg)
 {
 	char *str = va_arg(arg, char*);
-	int strlen, i, k;
+	int strlen, i;
+	unsigned int k;
 	char *ptr, *s = "\\x";
 
 	if (str == NULL)
@@ -21,7 +22,7 @@ int handler_Sstring(va_list arg)
 	{
 		for (i = 0; *(str + i) != '\0'; i++)
 		{
-		if (*(str + i) <= ' ' || *(str + i) == 127)
+		if (*(str + i) < 32 || *(str + i) >= 127)
 		{
 			k = *(str + i);
 			strlen += write(1, s, 2);
