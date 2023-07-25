@@ -1,10 +1,10 @@
 #include "main.h"
 /**
- * handler_unInteger - Prints integer to stdout
+ * write_unInteger - Prints integer to stdout
  * @arg: integer argument
  * Return: String length
  */
-int handler_unInteger(va_list arg)
+int write_unInteger(va_list arg)
 {
 	unsigned int num = va_arg(arg, unsigned int);
 	char *str = unInt_to_strn(num);

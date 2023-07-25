@@ -1,10 +1,10 @@
 #include "main.h"
 /**
- * handler_integer - Prints integer to stdout
+ * write_integer - Prints integer to stdout
  * @arg: integer argument
  * Return: String length
  */
-int handler_integer(va_list arg)
+int write_integer(va_list arg)
 {
 	int num = va_arg(arg, int);
 	char *str = to_strn(num);

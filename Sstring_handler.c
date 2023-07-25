@@ -1,13 +1,13 @@
 #include "main.h"
 
 /**
- * handler_Sstring - Entry point
+ * write_Sstring - Entry point
  * Description: Handling function for strings
  * @arg: argument passed
  * Return: Output string length
  */
 
-int handler_Sstring(va_list arg)
+int write_Sstring(va_list arg)
 {
 	char *str = va_arg(arg, char*);
 	int strlen, i;

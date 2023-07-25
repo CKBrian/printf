@@ -7,17 +7,17 @@
 int (*get_funct(char s))(va_list arg)
 {
 	specifier_map opts[] = {
-	{'c', handler_char},
-	{'s', handler_string},
-	{'S', handler_Sstring},
-	{'i', handler_integer},
-	{'d', handler_integer},
-	{'u', handler_unInteger},
-	{'b', handler_binary},
-	{'X', handler_HEX},
-	{'x', handler_hex},
-	{'o', handler_octal},
-	{'p', handler_pointer},
+	{'c', write_char},
+	{'s', write_string},
+	{'S', write_Sstring},
+	{'i', write_integer},
+	{'d', write_integer},
+	{'u', write_unInteger},
+	{'b', write_binary},
+	{'X', write_HEX},
+	{'x', write_hex},
+	{'o', write_octal},
+	{'p', write_pointer},
 	};
 	int i = 0;
 

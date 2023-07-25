@@ -38,15 +38,15 @@ typedef struct hexa
 	char h;
 } hex_d;
 
-int handler_char(va_list arg);
-int handler_string(va_list arg);
-int handler_Sstring(va_list arg);
-int handler_integer(va_list arg);
-int handler_unInteger(va_list arg);
-int handler_binary(va_list arg);
-int handler_octal(va_list arg);
-int handler_HEX(va_list arg);
-int handler_hex(va_list arg);
-int handler_pointer(va_list arg);
+int write_char(va_list arg);
+int write_string(va_list arg);
+int write_Sstring(va_list arg);
+int write_integer(va_list arg);
+int write_unInteger(va_list arg);
+int write_binary(va_list arg);
+int write_octal(va_list arg);
+int write_HEX(va_list arg);
+int write_hex(va_list arg);
+int write_pointer(va_list arg);
 
 #endif /* MAIN_H */
