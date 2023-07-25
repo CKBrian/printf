@@ -40,6 +40,7 @@ typedef struct hexa
 
 int handler_char(va_list arg);
 int handler_string(va_list arg);
+int handler_Sstring(va_list arg);
 int handler_integer(va_list arg);
 int handler_unInteger(va_list arg);
 int handler_binary(va_list arg);

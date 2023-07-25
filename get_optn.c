@@ -9,6 +9,7 @@ int (*get_funct(char s))(va_list arg)
 	specifier_map opts[] = {
 	{'c', handler_char},
 	{'s', handler_string},
+	{'S', handler_Sstring},
 	{'i', handler_integer},
 	{'d', handler_integer},
 	{'u', handler_unInteger},
@@ -20,7 +21,7 @@ int (*get_funct(char s))(va_list arg)
 	};
 	int i = 0;
 
-	while (i < 10)
+	while (i < 11)
 	{
 		if (s == opts[i].specifier)
 			return (opts[i].handler);
