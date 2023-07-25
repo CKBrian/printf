@@ -9,6 +9,7 @@ int (*get_funct(char s))(va_list arg);
 char *to_strn(int n);
 char *unInt_to_strn(unsigned int n);
 char *to_binary(unsigned int n);
+char *to_pointer(unsigned long int n);
 char *to_octal(unsigned int n);
 char *to_HEX(unsigned int n);
 char *to_hex(unsigned int n);
@@ -45,5 +46,6 @@ int handler_binary(va_list arg);
 int handler_octal(va_list arg);
 int handler_HEX(va_list arg);
 int handler_hex(va_list arg);
+int handler_pointer(va_list arg);
 
 #endif /* MAIN_H */

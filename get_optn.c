@@ -16,10 +16,11 @@ int (*get_funct(char s))(va_list arg)
 	{'X', handler_HEX},
 	{'x', handler_hex},
 	{'o', handler_octal},
+	{'p', handler_pointer},
 	};
 	int i = 0;
 
-	while (i < 9)
+	while (i < 10)
 	{
 		if (s == opts[i].specifier)
 			return (opts[i].handler);
