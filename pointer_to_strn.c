@@ -23,7 +23,6 @@ char *to_pointer(unsigned long int n)
 	str = malloc((i + 1) * sizeof(char));
 	if (str == NULL)
 	{
-		free(str);
 		return (NULL); }
 	*(str + i) = '\0';
 	*(str + 0) = '0';

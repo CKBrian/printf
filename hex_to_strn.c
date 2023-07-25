@@ -23,7 +23,6 @@ char *to_hex(unsigned int n)
 	str = malloc((i + 1) * sizeof(char));
 	if (str == NULL)
 	{
-		free(str);
 		return (NULL); }
 	*(str + i) = '\0';
 	i--;
