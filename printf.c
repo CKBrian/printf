@@ -10,8 +10,11 @@ int _printf(const char *format, ...)
 	va_list arg;
 	char p_holder[] = "scidbXxoupSRr";
 
+
 	va_start(arg, format);
 
+	if (format == NULL || (*(format + 1) == '\0' && *format == '%'))
+		return (-1);
 	for (j = 0; format[j] != '\0'; j++)
 	{
 	if (format[j] == '%')
