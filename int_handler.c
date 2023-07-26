@@ -10,6 +10,8 @@ int write_integer(va_list arg)
 	char *str = to_strn(num);
 	int strlen = _strlen(str);
 
+	if (str == NULL)
+		return (-1);
 	if (num == 0)
 	{
 		strlen = write(1, "0", 1);
