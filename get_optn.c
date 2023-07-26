@@ -18,10 +18,12 @@ int (*get_funct(char s))(va_list arg)
 	{'x', write_hex},
 	{'o', write_octal},
 	{'p', write_pointer},
+	{'R', write_rot13_string},
+	{'r', write_rev_string},
 	};
 	int i = 0;
 
-	while (i < 11)
+	while (i < 13)
 	{
 		if (s == opts[i].specifier)
 			return (opts[i].handler);

@@ -12,7 +12,7 @@ int write_pointer(va_list arg)
 
 	if (num == 0)
 	{
-		write(1, "(nil)", 5);
+		strlen = write(1, "(nil)", 5);
 	}
 	else
 		write(1, str, strlen);

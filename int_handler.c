@@ -12,7 +12,7 @@ int write_integer(va_list arg)
 
 	if (num == 0)
 	{
-		write(1, "0", 1);
+		strlen = write(1, "0", 1);
 	}
 	else
 		write(1, str, strlen);

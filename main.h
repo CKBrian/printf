@@ -4,7 +4,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
-
+char *rot13(char *str);
+char *rev_string(char *s);
 int (*get_funct(char s))(va_list arg);
 char *to_strn(int n);
 char *unInt_to_strn(unsigned int n);
@@ -38,6 +39,8 @@ typedef struct hexa
 	char h;
 } hex_d;
 
+int write_rev_string(va_list arg);
+int write_rot13_string(va_list arg);
 int write_char(va_list arg);
 int write_string(va_list arg);
 int write_Sstring(va_list arg);

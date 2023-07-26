@@ -1,25 +1,27 @@
 #include "main.h"
 
 /**
- * write_string - Entry point
+ * write_rot13_string - Entry point
  * Description: Handling function for strings
  * @arg: argument passed
  * Return: Output string length
  */
 
-int write_string(va_list arg)
+int write_rot13_string(va_list arg)
 {
 	char *str = va_arg(arg, char*);
+	char *s = rot13(str);
 	int strlen;
 
-	if (str == NULL)
+	if (s == NULL)
 	{
-		strlen = write(1, "(null)", 6);
+		strlen = (write(1, "(null)", 6));
 	}
 	else
 	{
-		strlen = _strlen(str);
-		write(1, str, strlen);
+		strlen = _strlen(s);
+		write(1, s, strlen);
 	}
+	free(s);
 	return (strlen);
 }

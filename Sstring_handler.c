@@ -16,7 +16,7 @@ int write_Sstring(va_list arg)
 
 	if (str == NULL)
 	{
-		return (write(1, "(null)", 6));
+		strlen = (write(1, "(null)", 6));
 	}
 	else
 	{

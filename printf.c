@@ -8,7 +8,7 @@ int _printf(const char *format, ...)
 {
 	int j, k, bytes = 0;
 	va_list arg;
-	char p_holder[] = "scidbXxoupS";
+	char p_holder[] = "scidbXxoupSRr";
 
 	va_start(arg, format);
 
@@ -23,7 +23,7 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-		for (k = 0; k < 11; k++)
+		for (k = 0; k < 13; k++)
 		{
 			if (format[j + 1] == p_holder[k])
 			{
@@ -31,7 +31,7 @@ int _printf(const char *format, ...)
 				j++;
 				break;
 			}
-			else if (k == 10)
+			else if (k == 12)
 				bytes += write(1, &format[j], 1);
 		} }
 	}
