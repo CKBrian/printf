@@ -6,7 +6,7 @@
  */
 int write_integer(va_list arg)
 {
-	int num = va_arg(arg, int);
+	long int num = va_arg(arg, long int);
 	char *str = to_strn(num);
 	int strlen = _strlen(str);
 
