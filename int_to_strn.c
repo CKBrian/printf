@@ -31,7 +31,7 @@ char *to_strn(long int n)
 	str = malloc((i + 1) * sizeof(char));
 	if (str == NULL)
 	{
-		return (NULL);
+		return (-1);
 	}
 	*(str + i) = '\0';
 	i--;
