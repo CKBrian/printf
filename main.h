@@ -7,7 +7,7 @@
 char *rot13(char *str);
 char *rev_string(char *s);
 int (*get_funct(char s))(va_list arg);
-char *to_strn(long int n);
+char *to_strn(int n);
 char *unInt_to_strn(unsigned int n);
 char *to_binary(unsigned int n);
 char *to_pointer(unsigned long int n);

@@ -5,9 +5,9 @@
  * Return: Pointer to a string otherwise NULL
  */
 
-char *to_strn(long int n)
+char *to_strn(int n)
 {
-	long int i, div = n, is_negative = n;
+	int i, div = n, is_negative = n;
 	char *str;
 
 	if (n < 0)
