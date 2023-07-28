@@ -1,15 +1,4 @@
 #include "main.h"
-
-/**
- * write_hex_char - Helper function to write a single hexadecimal character
- * @c: The character to be written
- * Return: Number of characters written (1)
- */
-int write_hex_char(char c)
-{
-	return (write(1, &c, 1));
-}
-
 /**
  * write_Sstring - Handling function for %S specifier
  * @arg: va_list containing the arguments
