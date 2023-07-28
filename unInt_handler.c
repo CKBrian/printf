@@ -8,12 +8,15 @@ int write_unInteger(va_list arg)
 {
 	unsigned int num = va_arg(arg, unsigned int);
 	char *str = unInt_to_strn(num);
-	int strlen = _strlen(str);
+	int strlen;
 
-	if (num == 0)
+	if (str == NULL || num == 0)
 		strlen = write(1, "0", 1);
 	else
+	{
+		strlen = _strlen(str);
 		write(1, str, strlen);
+	}
 	free(str);
 	return (strlen);
 }
