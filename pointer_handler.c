@@ -8,14 +8,17 @@ int write_pointer(va_list arg)
 {
 	unsigned long int num = va_arg(arg, unsigned long int);
 	char *str = to_pointer(num);
-	int strlen = _strlen(str);
+	int strlen;
 
-	if (num == 0)
+	if (str == NULL || num == 0)
 	{
 		strlen = write(1, "(nil)", 5);
 	}
 	else
+	{
+		strlen = _strlen(str);
 		write(1, str, strlen);
+	}
 	free(str);
 	return (strlen);
 }
