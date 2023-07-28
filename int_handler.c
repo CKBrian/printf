@@ -8,16 +8,17 @@ int write_integer(va_list arg)
 {
 	int num = va_arg(arg, int);
 	char *str = to_strn(num);
-	int strlen = _strlen(str);
+	int strlen;
 
-	if (str == NULL)
-		return (-1);
-	if (num == 0)
+	if (str == NULL || num == 0)
 	{
 		strlen = write(1, "0", 1);
 	}
 	else
+	{
+		strlen = _strlen(str);
 		write(1, str, strlen);
+	}
 	free(str);
 	return (strlen);
 }
