@@ -1,0 +1,805 @@
+#include "main.h"
+/**
+ * rot13 - Encodes a string replacing with 13th character in ascii
+ * @str: Pointer to string to be encoded
+ * Return: String
+ */
+char *rot13(char *str)
+{
+	int i;
+	char *s;
+
+	if (str == NULL)
+		return (NULL);
+	for (i = 0; str[i] != '\0'; i++)
+	{}
+	i++;
+	s = malloc(sizeof(char) * i);
+	if (s == NULL)
+		return (NULL);
+	*(s + (i - 1)) = '\0';
+	for (i = 0; str[i] != '\0'; i++)
+	{
+		while ((str[i] >= 'a' && str[i] <= 'z') ||
+			(str[i] >= 'A' && str[i] <= 'Z'))
+		{
+		if ((str[i] > 'm' && (str[i] >= 'a' && str[i] <= 'z')) ||
+			(str[i] > 'M' && (str[i] >= 'A' && str[i] <= 'Z')))
+		{
+			*(s + i) = (str[i] - 13);
+			break;
+		}
+		*(s + i) = (str[i] + 13);
+		break;
+		}
+		if  (!(str[i] >= 'a' && str[i] <= 'z') &&
+				!(str[i] >= 'A' && str[i] <= 'Z'))
+		{
+			*(s + i) = str[i];
+		}
+	}
+	return (s);
+}
+#include "main.h"
+/**
+ * rev_string - Reverses a string
+ * @s: String-containing variable
+ * Return: String in reverse
+ */
+char *rev_string(char *s)
+{
+	int i, k = 0;
+	int length, mid, first, last;
+	char *str;
+	/* Calculates lenght of string in s[] array */
+	if (s == NULL)
+		return (NULL);
+	for (i = 0; s[i] != '\0'; i++)
+	{}
+	i++;
+	str = malloc(sizeof(char) * i);
+	if (str == NULL)
+		return (NULL);
+	*(str + (i - 1)) = '\0';
+	i--;
+	/* Define the midpoint */
+	length = i - 1;
+	mid = (length / 2) + 1;
+
+	/* copy the string in reverse order to the s[] array */
+	for (i = length; (i + 1) >= mid; i--)
+	{
+		last = s[i];
+		first = s[k];
+		str[i] = first;
+		str[k] = last;
+		k++;
+	}
+	return (str);
+}
+#include "main.h"
+/**
+ * write_HEX - Prints hexadecimal to stdout
+ * @arg: integer argument
+ * Return: String length
+ */
+int write_HEX(va_list arg)
+{
+	unsigned int num = va_arg(arg, unsigned int);
+	char *str = to_HEX(num);
+	int strlen;
+
+	if (str == NULL || num == 0)
+		strlen = write(1, "0", 1);
+	else
+	{
+		strlen = _strlen(str);
+		write(1, str, strlen);
+	}
+	free(str);
+	return (strlen);
+}
+#include "main.h"
+/**
+ * to_HEX - Converts an unsigned int to HEXA and stores as a string
+ * @n: Unsigned integer to be converted
+ * Return: Pointer to a string otherwise NULL
+ */
+char *to_HEX(unsigned int n)
+{
+	unsigned int rem, div = n;
+	int i, j;
+	char *str;
+	hex_d arr[] = {
+		{10, 'A'},
+		{11, 'B'},
+		{12, 'C'},
+		{13, 'D'},
+		{14, 'E'},
+		{15, 'F'},
+	};
+
+	for (i = 0; div > 0; i++)
+		div /= 16;
+	str = malloc((i + 1) * sizeof(char));
+	if (str == NULL)
+	{
+		return (NULL); }
+	*(str + i) = '\0';
+	i--;
+	for (; i >= 0; i--)
+	{
+		rem = n % 16;
+		if (rem > 9)
+		{
+			for (j = 0; j < 6; j++)
+			{
+				if (arr[j].num == rem)
+				{
+				*(str + i) = arr[j].h;
+				n /= 16;
+				break; }
+			}
+		}
+		else
+		{
+			*(str + i) = rem + '0';
+			n /= 16; }
+	}
+	return (str); }
+#include "main.h"
+
+/**
+ * write_Sstring - Entry point
+ * Description: Handling function for strings
+ * @arg: argument passed
+ * Return: Output string length
+ */
+
+int write_Sstring(va_list arg)
+{
+	char *str = va_arg(arg, char*);
+	int strlen = 0, i = 0;
+	unsigned int k;
+	char *ptr = NULL, *s = "\\x";
+
+	if (str == NULL)
+	{
+		return (write(1, "(null)", 6));
+	}
+	else
+	{
+		for (i = 0; *(str + i) != '\0'; i++)
+		{
+		if (*(str + i) < 32 || *(str + i) >= 127)
+		{
+			k = *(str + i);
+			strlen += write(1, s, 2);
+			if (k < 16)
+				strlen += write(1, "0", 1);
+			ptr = to_HEX(k);
+			strlen += write(1, ptr, 1);
+
+		}
+		strlen += write(1, &(*(str + i)), 1);
+		}
+	}
+	free(ptr);
+	return (strlen);
+}
+#include "main.h"
+/**
+ * write_binary - Prints integer to stdout
+ * @arg: integer argument
+ * Return: String length
+ */
+int write_binary(va_list arg)
+{
+	unsigned int num = va_arg(arg, unsigned int);
+	char *str = to_binary(num);
+	int strlen;
+
+	if (str == NULL || num == 0)
+		strlen = write(1, "0", 1);
+	else
+	{
+		strlen = _strlen(str);
+		write(1, str, strlen);
+	}
+	free(str);
+	return (strlen);
+}
+#include "main.h"
+/**
+ * to_binary - Converts an unsigned int to binary and stores as a string
+ * @n: Unsigned integer to be converted to binary
+ * Return: Pointer to a string otherwise NULL
+ */
+char *to_binary(unsigned int n)
+{
+	int i;
+	unsigned int div = n;
+	char *str;
+
+	for (i = 0; div > 0; i++)
+	{
+		div /= 2;
+	}
+	str = malloc((i + 1) * sizeof(char));
+	if (str == NULL)
+	{
+		return (NULL);
+	}
+	*(str + i) = '\0';
+	i--;
+	for (; i >= 0; i--)
+	{
+		*(str + i) = (n % 2) + '0';
+		n /= 2;
+	}
+	return (str);
+}
+#include "main.h"
+
+/**
+ * write_char - Entry point
+ *
+ * Description: Handling function for %c specifier
+ * @arg: argument
+ *
+ * Return: 1
+ */
+
+int write_char(va_list arg)
+{
+	char c = va_arg(arg, int);
+
+	write(1, &c, 1);
+	return (1);
+}
+#include "main.h"
+/**
+ * get_funct - Selects argument to print to stdout
+ * @s: Pointer to operator passed as argument
+ * Return: Pointer to funtion
+ */
+int (*get_funct(char s))(va_list arg)
+{
+	specifier_map opts[] = {
+	{'c', write_char},
+	{'s', write_string},
+	{'S', write_Sstring},
+	{'i', write_integer},
+	{'d', write_integer},
+	{'u', write_unInteger},
+	{'b', write_binary},
+	{'X', write_HEX},
+	{'x', write_hex},
+	{'o', write_octal},
+	{'p', write_pointer},
+	{'R', write_rot13_string},
+	{'r', write_rev_string},
+	};
+	int i = 0;
+
+	while (i < 13)
+	{
+		if (s == opts[i].specifier)
+			return (opts[i].handler);
+		i++;
+	}
+	return (NULL);
+}
+#include "main.h"
+/**
+ * write_hex - Prints hexadecimal to stdout
+ * @arg: integer argument
+ * Return: String length
+ */
+int write_hex(va_list arg)
+{
+	unsigned int num = va_arg(arg, unsigned int);
+	char *str = to_hex(num);
+	int strlen;
+
+	if (str == NULL || num == 0)
+		strlen = write(1, "0", 1);
+	else
+	{
+		strlen = _strlen(str);
+		write(1, str, strlen);
+	}
+	free(str);
+	return (strlen);
+}
+#include "main.h"
+/**
+ * to_hex - Converts an unsigned int to HEXA and stores as a string
+ * @n: Unsigned integer to be converted
+ * Return: Pointer to a string otherwise NULL
+ */
+char *to_hex(unsigned int n)
+{
+	unsigned int rem, div = n;
+	char *str;
+	int i, j;
+	hex_d arr[] = {
+		{10, 'a'},
+		{11, 'b'},
+		{12, 'c'},
+		{13, 'd'},
+		{14, 'e'},
+		{15, 'f'},
+	};
+
+	for (i = 0; div > 0; i++)
+		div /= 16;
+	str = malloc((i + 1) * sizeof(char));
+	if (str == NULL)
+	{
+		return (NULL); }
+	*(str + i) = '\0';
+	i--;
+	for (; i >= 0; i--)
+	{
+		rem = n % 16;
+		if (rem > 9)
+		{
+			for (j = 0; j < 6; j++)
+			{
+				if (arr[j].num == rem)
+				{
+				*(str + i) = arr[j].h;
+				n /= 16;
+				break; }
+			}
+		}
+		else
+		{
+			*(str + i) = rem + '0';
+			n /= 16; }
+	}
+	return (str); }
+#include "main.h"
+/**
+ * write_integer - Prints integer to stdout
+ * @arg: integer argument
+ * Return: String length
+ */
+int write_integer(va_list arg)
+{
+	int num = va_arg(arg, int);
+	char *str = to_strn(num);
+	int strlen;
+
+	if (str == NULL || num == 0)
+	{
+		strlen = write(1, "0", 1);
+	}
+	else
+	{
+		strlen = _strlen(str);
+		write(1, str, strlen);
+	}
+	free(str);
+	return (strlen);
+}
+#include "main.h"
+/**
+ * to_strn - Converts an int to a string
+ * @n: Integer to be converted to string
+ * Return: Pointer to a string otherwise NULL
+ */
+
+char *to_strn(long int n)
+{
+	long int i, div = n, is_negative = n;
+	char *str;
+
+	if (n < 0)
+	{
+		div *= -1;
+		for (i = 0; div > 0; i++)
+		{
+			div /= 10;
+		}
+		i++;
+		n *= -1;
+
+	}
+	else
+	{
+		for (i = 0; div > 0; i++)
+		{
+			div /= 10;
+		}
+	}
+	str = malloc((i + 1) * sizeof(char));
+	if (str == NULL)
+	{
+		free(str);
+		return (NULL);
+	}
+	*(str + i) = '\0';
+	i--;
+	for (; i >= 0; i--)
+	{
+		*(str + i) = (n % 10) + '0';
+		n /= 10;
+	}
+	if (is_negative < 0)
+		str[0] = '-';
+	return (str);
+}
+#include "main.h"
+/**
+ * write_octal - Prints integer to stdout
+ * @arg: integer argument
+ * Return: String length
+ */
+int write_octal(va_list arg)
+{
+	unsigned int num = va_arg(arg, unsigned int);
+	char *str = to_octal(num);
+	int strlen;
+
+	if (num == 0)
+		strlen = write(1, "0", 1);
+	else
+	{
+		strlen = _strlen(str);
+		write(1, str, strlen);
+	}
+	free(str);
+	return (strlen);
+}
+#include "main.h"
+/**
+ * to_octal - Converts an unsigned int to octal and stores as a string
+ * @n: Unsigned integer to be converted to octal
+ * Return: Pointer to a string otherwise NULL
+ */
+char *to_octal(unsigned int n)
+{
+	unsigned int div = n;
+	char *str;
+	int i;
+
+	for (i = 0; div > 0; i++)
+	{
+		div /= 8;
+	}
+	str = malloc((i + 1) * sizeof(char));
+	if (str == NULL)
+	{
+		return (NULL);
+	}
+	*(str + i) = '\0';
+	i--;
+	for (; i >= 0; i--)
+	{
+		*(str + i) = (n % 8) + '0';
+		n /= 8;
+	}
+	return (str);
+}
+#include "main.h"
+/**
+ * write_pointer - Prints pointer hexadecimal to stdout
+ * @arg: integer argument
+ * Return: String length
+ */
+int write_pointer(va_list arg)
+{
+	unsigned long int num = va_arg(arg, unsigned long int);
+	char *str = to_pointer(num);
+	int strlen;
+
+	if (str == NULL || num == 0)
+	{
+		strlen = write(1, "(nil)", 5);
+	}
+	else
+	{
+		strlen = _strlen(str);
+		write(1, str, strlen);
+	}
+	free(str);
+	return (strlen);
+}
+#include "main.h"
+/**
+ * to_pointer - Converts an unsigned int to HEXA and stores as a string
+ * @n: Unsigned integer to be converted
+ * Return: Pointer to a string otherwise NULL
+ */
+char *to_pointer(unsigned long int n)
+{
+	unsigned long int rem, div = n;
+	char *str;
+	int i, j;
+	hex_d arr[] = {
+		{10, 'a'},
+		{11, 'b'},
+		{12, 'c'},
+		{13, 'd'},
+		{14, 'e'},
+		{15, 'f'}, };
+
+	for (i = 0; div > 0; i++)
+		div /= 16;
+	i += 2;
+	str = malloc((i + 1) * sizeof(char));
+	if (str == NULL)
+	{
+		return (NULL); }
+	*(str + i) = '\0';
+	*(str + 0) = '0';
+	*(str + 1) = 'x';
+	i--;
+	for (; i > 1; i--)
+	{
+		rem = n % 16;
+		if (rem > 9)
+		{
+			for (j = 0; j < 6; j++)
+			{
+				if (arr[j].num == rem)
+				{
+				*(str + i) = arr[j].h;
+				n /= 16;
+				break; }
+			} }
+		else
+		{	*(str + i) = rem + '0';
+			n /= 16; } }
+	return (str); }
+#include "main.h"
+/**
+ * _printf - produces output according to a format
+ * @format: Pointer to format string containing format specifiers
+ * Return: No of characters written to stdout else -1
+ */
+int _printf(const char *format, ...)
+{
+	int j, k, bytes = 0;
+	va_list arg;
+	char p_holder[] = "scidbXxoupSRr";
+
+
+	va_start(arg, format);
+
+	if (format == NULL || (*(format + 1) == '\0' && *format == '%'))
+		return (-1);
+	for (j = 0; format[j] != '\0'; j++)
+	{
+	if (format[j] == '%')
+	{
+		if (format[j + 1] == '%')
+		{
+			bytes += write(1, &format[j], 1);
+			j++;
+		}
+		else
+		{
+		for (k = 0; k < 13; k++)
+		{
+			if (format[j + 1] == p_holder[k])
+			{
+				bytes += (*get_funct(p_holder[k]))(arg);
+				j++;
+				break;
+			}
+			else if (k == 12)
+				bytes += write(1, &format[j], 1);
+		} }
+	}
+	else
+		bytes += write(1, &format[j], 1);
+	}
+	va_end(arg);
+	return (bytes);
+}
+
+#include "main.h"
+
+/**
+ * write_rev_string - Entry point
+ * Description: Handling function for strings
+ * @arg: argument passed
+ * Return: Output string length
+ */
+
+int write_rev_string(va_list arg)
+{
+	char *str = va_arg(arg, char*);
+	char *s = rev_string(str);
+	int strlen;
+
+	if (s == NULL)
+	{
+		strlen = (write(1, "(null)", 6));
+	}
+	else
+	{
+		strlen = _strlen(s);
+		write(1, s, strlen);
+	}
+	free(s);
+	return (strlen);
+}
+#include "main.h"
+
+/**
+ * write_rot13_string - Entry point
+ * Description: Handling function for strings
+ * @arg: argument passed
+ * Return: Output string length
+ */
+
+int write_rot13_string(va_list arg)
+{
+	char *str = va_arg(arg, char*);
+	char *s = rot13(str);
+	int strlen;
+
+	if (s == NULL)
+	{
+		strlen = (write(1, "(null)", 6));
+	}
+	else
+	{
+		strlen = _strlen(s);
+		write(1, s, strlen);
+	}
+	free(s);
+	return (strlen);
+}
+#include "main.h"
+
+/**
+ * write_string - Entry point
+ * Description: Handling function for strings
+ * @arg: argument passed
+ * Return: Output string length
+ */
+
+int write_string(va_list arg)
+{
+	char *str = va_arg(arg, char*);
+	int strlen;
+
+	if (str == NULL)
+	{
+		strlen = write(1, "(null)", 6);
+	}
+	else
+	{
+		strlen = _strlen(str);
+		write(1, str, strlen);
+	}
+	return (strlen);
+}
+#include "main.h"
+/**
+ * _strlen - Returns length of string
+ * @s: String array
+ * Return: 0 always
+ */
+int _strlen(char *s)
+{
+	int i;
+
+	for (i = 0; s[i] != '\0'; i++)
+	{}
+
+	return (i);
+}
+#include "main.h"
+/**
+ * write_unInteger - Prints integer to stdout
+ * @arg: integer argument
+ * Return: String length
+ */
+int write_unInteger(va_list arg)
+{
+	unsigned int num = va_arg(arg, unsigned int);
+	char *str = unInt_to_strn(num);
+	int strlen;
+
+	if (str == NULL || num == 0)
+		strlen = write(1, "0", 1);
+	else
+	{
+		strlen = _strlen(str);
+		write(1, str, strlen);
+	}
+	free(str);
+	return (strlen);
+}
+#include "main.h"
+/**
+ * unInt_to_strn - Converts an int to a string
+ * @n: Integer to be converted to string
+ * Return: Pointer to a string otherwise NULL
+ */
+
+char *unInt_to_strn(unsigned int n)
+{
+	int i;
+	unsigned int div = n;
+	char *str;
+
+	for (i = 0; div > 0; i++)
+	{
+		div /= 10;
+	}
+	str = malloc((i + 1) * sizeof(char));
+	if (str == NULL)
+	{
+		return (NULL);
+	}
+	*(str + i) = '\0';
+	i--;
+	for (; i >= 0; i--)
+	{
+		*(str + i) = (n % 10) + '0';
+		n /= 10;
+	}
+	return (str);
+}
+#ifndef MAIN_H
+#define MAIN_H
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <stdarg.h>
+char *rot13(char *str);
+char *rev_string(char *s);
+int (*get_funct(char s))(va_list arg);
+char *to_strn(long int n);
+char *unInt_to_strn(unsigned int n);
+char *to_binary(unsigned int n);
+char *to_pointer(unsigned long int n);
+char *to_octal(unsigned int n);
+char *to_HEX(unsigned int n);
+char *to_hex(unsigned int n);
+int _strlen(char *s);
+int _printf(const char *format, ...);
+
+/**
+ * struct specifier_map - Mapping specifiers to their functions
+ * @specifier: the map itself
+ * @handler: function pointer
+ */
+typedef struct specifier_map
+{
+	char specifier;
+	int (*handler)(va_list);
+} specifier_map;
+
+/**
+ * struct hexa - mapping decimal (base 10) to hexadecimal letter
+ * @num: the map to hexadecimal letters (A, B ...)
+ * @h: hexadecimal letters (A, B, ...)
+ */
+typedef struct hexa
+{
+	unsigned int num;
+	char h;
+} hex_d;
+
+int write_rev_string(va_list arg);
+int write_rot13_string(va_list arg);
+int write_char(va_list arg);
+int write_string(va_list arg);
+int write_Sstring(va_list arg);
+int write_integer(va_list arg);
+int write_unInteger(va_list arg);
+int write_binary(va_list arg);
+int write_octal(va_list arg);
+int write_HEX(va_list arg);
+int write_hex(va_list arg);
+int write_pointer(va_list arg);
+
+#endif /* MAIN_H */
